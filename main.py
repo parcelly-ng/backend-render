@@ -16,6 +16,12 @@ def whatsapp_webhook(request: Request):
 async def whatsapp_process(request: Request):
     note= await request.json()
     print(note)
+    number = note['entry'][0]['changes'][0]['value']['contacts'][0]['wa_id']
+    message1=note.get('entry')[0].get('changes')[0].get('value').get('messages')[0].get('text').get('body')
+    message2=''
+    print(number)
+    print(message1)
+
 
     return Response('hello',status_code=200)
 
