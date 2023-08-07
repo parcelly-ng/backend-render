@@ -26,7 +26,7 @@ def send(number, message):
     a = json.dumps(data)
     print('sending')
 
-    b = requests.post('https://graph.facebook.com/v17.0/1689306551511250/messages',
+    b = requests.post('https://graph.facebook.com/v17.0/108743118975924/messages',
                       headers=headers,
                       data=a)
     print(b.text)
