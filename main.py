@@ -1,6 +1,9 @@
 from typing import Union
 
+
 from fastapi import FastAPI, Request, Response
+import send_message
+
 
 app = FastAPI()
 
@@ -19,8 +22,8 @@ async def whatsapp_process(request: Request):
     number = note['entry'][0]['changes'][0]['value']['contacts'][0]['wa_id']
     message1=note.get('entry')[0].get('changes')[0].get('value').get('messages')[0].get('text').get('body')
     message2=''
-    print(number)
-    print(message1)
+    return send_message.send_out.send(number,message1)
+    
 
 
     return Response('hello',status_code=200)
