@@ -22,7 +22,7 @@ def check(number, url=url, headers=headers):
         "hash_values": [number],
         "get_attributes": ['session']
     }
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
 
     print(response.text.encode('utf8'))
 
