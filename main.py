@@ -26,8 +26,9 @@ async def whatsapp_process(request: Request):
         session.check(number)
 
         send_out.send(number,message1)
-    except:
+    except Exception as e:
         print('not important')
+        print(e)
     return Response('hello',status_code=200)
 
 @app.get("/")
