@@ -19,8 +19,8 @@ def check(number, url=url, headers=headers):
         "operation": "search_by_hash",
         "schema": "backend",
         "table": "session",
-        "hash_values": [number],
-        "get_attributes": ['session']
+        "hash_values": [number,],
+        "get_attributes": ['session',]
     }
     response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
 
