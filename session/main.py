@@ -14,7 +14,7 @@ headers = {
 }
 
 
-def check(number, message, url=url, headers=headers):
+def check(number, url=url, headers=headers):
     payload = {
         "operation": "search_by_hash",
         "schema": "backend",
