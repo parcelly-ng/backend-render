@@ -17,8 +17,8 @@ headers = {
 def check(number, message, url=url, headers=headers):
     payload = {
         "operation": "search_by_hash",
-        "schema": "dev",
-        "table": "dog",
+        "schema": "backend",
+        "table": "session",
         "hash_values": [number],
         "get_attributes": ['session']
     }

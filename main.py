@@ -3,6 +3,7 @@ from typing import Union
 
 from fastapi import FastAPI, Request, Response
 from send_message import send_out
+from session import main as session
 
 
 app = FastAPI()
@@ -22,6 +23,8 @@ async def whatsapp_process(request: Request):
     try:
         number = note['entry'][0]['changes'][0]['value']['contacts'][0]['wa_id']
         message1=note.get('entry')[0].get('changes')[0].get('value').get('messages')[0].get('text').get('body')
+        session.check(number)
+
         send_out.send(number,message1)
     except:
         print('not important')
