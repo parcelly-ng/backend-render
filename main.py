@@ -9,7 +9,6 @@ from session import main as session
 app = FastAPI()
 
 
-
 @app.get("/whatsapp")
 def whatsapp_webhook(request: Request):
 
@@ -18,21 +17,23 @@ def whatsapp_webhook(request: Request):
 
 @app.post("/whatsapp")
 async def whatsapp_process(request: Request):
-    note= await request.json()
+    note = await request.json()
     print(note)
     try:
         number = note['entry'][0]['changes'][0]['value']['contacts'][0]['wa_id']
-        message1=note.get('entry')[0].get('changes')[0].get('value').get('messages')[0].get('text').get('body')
-        ses=session.check(number)
-        if ses==False:
+        message1 = note.get('entry')[0].get('changes')[0].get(
+            'value').get('messages')[0].get('text').get('body')
+        ses = session.check(number)
+        if ses == False:
             session.add(number)
-            brain.brain(number,message1)
+            brain.brain(message1, session=ses, number=number)
         else:
-            brain.brain(number,message1)
+            brain.brain(message1, session=ses, number=number)
     except Exception as e:
         print('not important')
         print(e)
-    return Response('hello',status_code=200)
+    return Response('hello', status_code=200)
+
 
 @app.get("/")
 def read_root():
@@ -42,7 +43,3 @@ def read_root():
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
-
-
-
-
