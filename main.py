@@ -2,7 +2,7 @@ from typing import Union
 
 
 from fastapi import FastAPI, Request, Response
-from send_message import send_out
+from send_message import main as brain
 from session import main as session
 
 
@@ -26,9 +26,9 @@ async def whatsapp_process(request: Request):
         ses=session.check(number)
         if ses==False:
             session.add(number)
-            send_out.send(number,message1)
+            brain.brain(number,message1)
         else:
-            send_out.send(number,message1)
+            brain.brain(number,message1)
     except Exception as e:
         print('not important')
         print(e)
