@@ -23,9 +23,12 @@ async def whatsapp_process(request: Request):
     try:
         number = note['entry'][0]['changes'][0]['value']['contacts'][0]['wa_id']
         message1=note.get('entry')[0].get('changes')[0].get('value').get('messages')[0].get('text').get('body')
-        session.check(number)
-
-        send_out.send(number,message1)
+        ses=session.check(number)
+        if ses==False:
+            session.add(number)
+            send_out.send(number,message1)
+        else:
+            send_out.send(number,message1)
     except Exception as e:
         print('not important')
         print(e)

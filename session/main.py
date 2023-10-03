@@ -23,13 +23,29 @@ def check(number, url=url, headers=headers):
         "operation": "search_by_hash",
         "schema": "backend",
         "table": "session",
-        "hash_values": [int(number)],
+        "hash_values": [number],
         "get_attributes": ['session',]
     }
     response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
 
-    print(response.text.encode('utf8'))
+    res=json.loads(response.text.encode('utf8'))
+    if len(res)==0:
+        return False
+    else:
+        return res[0]['session']
 
 
-def add():
-    pass
+def add(number,session='A',url=url, headers=headers):
+    payload = {
+        "operation": "insert",
+        "schema": "backend",
+        "table": "session",
+        'records':[
+            {
+                'phone':int(number),
+                'session':session
+            }
+        ],
+    }
+    response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
+    
