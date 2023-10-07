@@ -26,6 +26,7 @@ async def whatsapp_process(request: Request):
         ses = session.check(number)
         if ses == False:
             session.add(number)
+            ses = 'A'
             brain.brain(message1, session=ses, number=number)
         else:
             brain.brain(message1, session=ses, number=number)
