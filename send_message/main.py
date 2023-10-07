@@ -21,7 +21,7 @@ How can I assist you today?",
 
     'lost': 'I didnt get your last message',
 
-    'order': "To create a new order, simply type *'Order'* and provide the necessary details like pickup location, delivery address, and any special instructions.",
+    'order': "To create a new order, simply type *'Order'* and provide the pickup and dropoff location with a description of the item to be delivered",
 
     'confirm_order': "Great! 🚀 You've just created a new order. Please review the following details and confirm:\n\
 \n\
